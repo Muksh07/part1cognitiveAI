@@ -1,0 +1,309 @@
+<div class="container">
+  <div class = "top" >
+    <div class="titles"style="display: flex; align-items: center;">
+      <div  class="title"> EXL</div>
+      <div class="divider"></div>
+      <div class="subtitle">NeuraCraft</div>
+    </div>
+    
+  <header>
+   
+    <nav>
+      <button *ngFor="let tab of tabs" (click)="setActiveTab(tab)" [class.active]="activeTab === tab">
+        {{ tab }}
+      </button>
+    </nav>
+  </header>
+  </div>
+  <div *ngIf="activeTab === 'Insight Elicitation'" class="tab-content">
+    <div class="main-content">
+      <div class="input-section" id="input-section">
+        <h3>Detailed Business Requirements - BRD</h3>
+        <textarea class="BRD" [(ngModel)]="inputText"></textarea>
+
+        <div style="display: flex; align-items: center;">
+          <label for="task"
+            style="margin-right: 10px; font-weight: bold; color: #797676;font-size: smaller; font-family: 'Arial', sans-serif;">Task:</label>
+          <input class="task-input" id="task" type="text" [(ngModel)]="taskInput" />
+        </div>
+
+      </div>
+      <div class="output-section" id=>
+        <h3>Optimised Formatted - BRD</h3>
+        <textarea class="BRD" [(ngModel)]="outputText"></textarea>
+
+        <div style="display: flex; align-items: stretch; justify-content: flex-end; padding: 21px;">
+          <div class="processing-container" style="margin-left: 10px;">
+            <div class="processing-container">
+              <div *ngIf="isAnalyzingBRD"  class="processing-text">Processing</div>
+              <div *ngIf="isAnalyzingBRD"  class="loading-box-container">
+
+                <div class="loading-box"></div>
+              </div>
+              <div *ngIf="responseBRD">
+                <!-- <div class="processing-text">Processing </div> -->
+                <div class="response">RESPONSE RECEIVED</div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="isAnalyzingBRD" ><i class="fa fa-stop" id="abort-icon-BRD" title="abort" style="color: #fb4e0b; padding-left: 9px; font-size: 25px; cursor: pointer;" (click)="abortBRD()"></i>
+          </div>
+        </div>
+        
+        
+      </div>
+      
+    </div>
+
+
+
+
+    <div class="action-buttons">
+      <button (click)="uploadBRD()">Upload BRD</button>
+      <button (click)="getTokenCount()">No. Of Tokens</button>
+      <button (click)="analyzeBRD()" [disabled]="isAnalyzingBRD">Analyze BRD</button>
+      <button (click)="saveBRD()">Save BRD</button>
+      <button (click)="saveContextHistory()">Save Context History</button>
+      <button (click)="showContextHistory()">Context History</button>
+
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'Solidification'" class="tab-content">
+    <div class="main-content">
+      <div class="input-section">
+        <h3>Technical Requirement and Solution Design</h3>
+        <textarea class="SOL" [(ngModel)]="technicalRequirement"></textarea>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center;justify-content: space-between; margin-right: 20px;">
+      <div class="action-buttons" style="display: flex; align-items: center;">
+        <button (click)="solidify()" [disabled]="isAnalyzingSOL">Solidification</button>
+       
+        
+
+      </div>
+      <div class="processing-container" style="margin-left: 10px;">
+        <div class="processing-container">
+          <div *ngIf="isAnalyzingSOL" class="processing-text">Processing </div>
+          <div *ngIf="isAnalyzingSOL" class="loading-box-container">
+            <div class="loading-box"></div>
+            <!-- <div class="loading-box"></div>
+            <div class="loading-box"></div> -->
+          </div>
+          <div *ngIf="responseSOL">
+            <div class="response">RESPONSE RECEIVED</div>
+          </div>
+        </div>
+        <div *ngIf="isAnalyzingSOL"><i class="fa fa-stop" id="abort-icon-SOL" title="abort" style="color: #fb4e0b; padding-left: 9px; font-size: 25px; cursor: pointer; margin-right: 10px;" (click)="abortSOL()"></i>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+</div>
+
+<div *ngIf="activeTab === 'Blueprinting'" class="tab-content">
+  <nav>
+    <button *ngFor="let subTab of blueprintingSubTabs" (click)="setActiveBlueprintingSubTab(subTab)"
+      [class.active]="activeBlueprintingSubTab === subTab" class="blueprinting-sub-tab">
+      {{ subTab }}
+    </button>
+  </nav>
+
+  <div *ngIf="activeBlueprintingSubTab === 'Requirement Summary'" class="sub-tab-content">
+    <textarea [(ngModel)]="requirementSummary" class="full-width-textarea"></textarea>
+  </div>
+  <div *ngIf="activeBlueprintingSubTab === 'Solution Overview'" class="sub-tab-content">
+    <textarea [(ngModel)]="solutionOverview" class="full-width-textarea"></textarea>
+  </div>
+  <div *ngIf="activeBlueprintingSubTab === 'Project Structure'" class="sub-tab-content">
+    <div class="project-structure-container">
+      <div class="description-section">
+        <h4>Project Structure Description</h4>
+        <textarea [(ngModel)]="projectStructureDescription" class="full-width-textarea"></textarea>
+      </div>
+
+      <div class="folder-structure-section">
+        <h4>Folder Structure</h4>
+        <div class="folder-tree">
+          <ng-container
+            *ngTemplateOutlet="folderTemplate; context: { $implicit: folderStructure, level: 0 }"></ng-container>
+        </div>
+      </div>
+
+      <ng-template #folderTemplate let-items let-level="level">
+        <ul>
+          <li *ngFor="let item of items; let last = last" [class.last-child]="last">
+            <div class="tree-node" [style.padding-left.px]="level * 20">
+              <span *ngIf="item.type === 'folder'" class="folder-icon" (click)="toggleFolder(item)">
+                {{ item.expanded ? "[-]" : "[+]" }}
+              </span>
+              <span *ngIf="item.type === 'file'" class="file-icon">&#9679;</span>
+              <span (click)="item.type === 'file' ? showFileContent(item) : showFolderContent(item)">
+                {{ item.name }}
+              </span>
+            </div>
+            <ng-container *ngIf="item.type === 'folder' && item.expanded">
+              <ng-container
+                *ngTemplateOutlet="folderTemplate; context: { $implicit: item.children, level: level + 1 }"></ng-container>
+            </ng-container>
+          </li>
+        </ul>
+      </ng-template>
+
+      <div class="file-content-section">
+        <h4>Content</h4>
+        <textarea [(ngModel)]="selectedContent" class="full-width-textarea" readonly></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="activeBlueprintingSubTab === 'Data Flow'" class="sub-tab-content">
+    <textarea [(ngModel)]="dataFlow" class="full-width-textarea"></textarea>
+  </div>
+  <div *ngIf="activeBlueprintingSubTab === 'Unit Testing'" class="sub-tab-content">
+    <textarea [(ngModel)]="unitTesting" class="full-width-textarea"></textarea>
+  </div>
+  <div *ngIf="activeBlueprintingSubTab === 'Common Functionalities'" class="sub-tab-content">
+    <textarea [(ngModel)]="commonFunctionalities" class="full-width-textarea"></textarea>
+  </div>
+  <div *ngIf="activeBlueprintingSubTab === 'Database Scripts'" class="sub-tab-content">
+    <textarea [(ngModel)]="databaseScripts" class="full-width-textarea"></textarea>
+  </div>
+
+  <div style="display: flex; align-items: center;justify-content: space-between; margin-right: 20px;">
+    <div class="action-buttons" style="display: flex; align-items: center;">
+      <button (click)="blueprinting()" [disabled]="isAnalyzingBLU">Blueprinting</button>
+    </div>
+    <div class="processing-container" style="margin-left: 10px;">
+      <div class="processing-container">
+        <div *ngIf="isAnalyzingBLU" class="processing-text">Processing </div>
+        <div *ngIf="isAnalyzingBLU" class="loading-box-container">
+          <div class="loading-box"></div>
+          <!-- <div class="loading-box"></div>
+            <div class="loading-box"></div> -->
+        </div>
+        <div *ngIf="responseBLU">
+          <div class="response">RESPONSE RECEIVED</div>
+        </div>
+      </div>
+      <div *ngIf="isAnalyzingBLU"><i class="fa fa-stop" id="abort-icon-BLU" title="abort" style="color: #fb4e0b; padding-left: 9px; font-size: 25px; cursor: pointer;margin-right: 10px;" (click)="abortBLU()"></i>
+    </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Placeholder for Code Synthesis tab -->
+<!-- ... existing code ... -->
+
+<div *ngIf="activeTab === 'Code Synthesis'" class="tab-content">
+  <div class="code-synthesis-container">
+    <div class="code-folder-structure-section">
+      <h4>Solution Folder Structure</h4>
+      <div class="code-folder-tree">
+        <ng-container *ngTemplateOutlet="
+              codeFolderTemplate;
+              context: { $implicit: codeSynthesisFolderStructure, level: 0 }
+            "></ng-container>
+      </div>
+    </div>
+
+    <div class="code-content-section">
+      <h4>Content</h4>
+      <textarea class="SOLtree" [(ngModel)]="selectedCodeContent" class="full-width-textarea" readonly></textarea>
+    </div>
+  </div>
+
+  <div class="checkbox-container">
+    <label>
+      <input type="checkbox" [(ngModel)]="isdescribe" [disabled]="isAnalyzingCOD" />
+      <span class="italic">describe code</span>
+    </label>
+  </div>
+
+  <div style="display: flex; align-items: center;justify-content: space-between; margin-right: 20px;">
+    <div class="action-buttons" style="display: flex; align-items: center;">
+      <button (click)="startCodeSynthesis()" [disabled]="isAnalyzingCOD">Code Synthesis</button>
+      <!-- <button (click)="startCodeSynthesistest()">Code Synthesis Test</button> -->
+      <button *ngIf="responseCOD" (click)="downloadZip()">Download & Save Structure</button>
+    </div>
+    <div class="processing-container" style="margin-left: 10px;">
+      <div class="processing-container">
+        <div *ngIf="isAnalyzingCOD" class="processing-text">Processing </div>
+        <div *ngIf="isAnalyzingCOD" class="loading-box-container">
+          <div class="loading-box"></div>
+          <!-- <div class="loading-box"></div>
+            <div class="loading-box"></div> -->
+        </div>
+        <div *ngIf="responseCOD">
+          <div class="response">RESPONSE RECEIVED</div>
+        </div>
+        <div *ngIf="isAnalyzingCOD" ><i class="fa fa-stop" id="abort-icon-COD" title="abort" style="color: #fb4e0b; padding-left: 9px; font-size: 25px; cursor: pointer; margin-right: 10px;" (click)="abortCOD()"></i>
+        </div>
+      </div>
+       
+    </div>
+
+  </div>
+
+
+  <ng-template #codeFolderTemplate let-items let-level="level">
+    <ul class="code-tree">
+      <li *ngFor="let item of items; let last = last" [class.last-child]="last">
+        <div class="code-tree-node" [style.padding-left.px]="level * 20">
+          <span *ngIf="item.type === 'folder'" class="code-folder-icon" (click)="toggleCodeFolder(item)">
+            {{ item.expanded ? "[-]" : "[+]" }}
+          </span>
+          <span *ngIf="item.type === 'file' && (item.code || item.description)" class="code-file-icon"
+            (click)="toggleCodeFile(item)">
+            {{ item.expanded ? "[-]" : "[+]" }}
+          </span>
+          <span *ngIf="item.type === 'file' && !(item.code || item.description)" class="code-file-icon">
+            &#9679;
+          </span>
+          <span (click)="showCodeContent(item.content)">
+            {{ item.name }}
+          </span>
+        </div>
+        <ng-container *ngIf="item.type === 'folder' && item.expanded">
+          <ng-container *ngTemplateOutlet="
+                codeFolderTemplate;
+                context: { $implicit: item.children, level: level + 1 }
+              "></ng-container>
+        </ng-container>
+        <ng-container *ngIf="
+              item.type === 'file' &&
+              item.expanded &&
+              (item.code || item.description)
+            ">
+          <ul class="code-tree">
+            <li *ngIf="item.code">
+              <div class="code-tree-node" [style.padding-left.px]="(level + 1) * 20">
+                <span class="code-file-icon">&#9679;</span>
+                <span (click)="showCodeContent(item.code)">code</span>
+              </div>
+            </li>
+            <li *ngIf="item.description">
+              <div class="code-tree-node" [style.padding-left.px]="(level + 1) * 20">
+                <span class="code-file-icon">&#9679;</span>
+                <span (click)="showCodeContent(item.description)">description</span>
+              </div>
+            </li>
+          </ul>
+        </ng-container>
+      </li>
+    </ul>
+  </ng-template>
+</div>

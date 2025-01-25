@@ -1,0 +1,850 @@
+/* General Container Styling */
+.container {
+  font-family: 'Inter', sans-serif;
+  /* margin: 0 auto; */
+  /* max-width: 1200px; */
+  /* padding: 5px; */
+  background-color: #f4f5f7;
+  border-radius: 15px;
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+}
+ 
+
+.top{
+  background-image: url('../assets/Images/uu.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.title{
+  padding: 12px 10px;
+  color: #fb4e0b; 
+  /* background-color:#fb4e0b ; */
+  font-size: 20px;
+  font-weight: bold;
+}
+.divider{
+  border-left: 2px solid white; /* Adjust the color and width as needed */
+  height: 20px;
+}
+
+.subtitle{
+  font-family: 'Yantramanav', sans-serif;
+  display: block;
+    margin-left: 10px;
+    margin-bottom: 0;
+    /* padding-left: 8px; */
+    font-size: 15px;
+    color: #fb4e0b;
+    border-left: 0;
+    font-style: normal;
+    font-weight: bold;
+}
+
+
+/* Header Styling */
+header {
+  display: flex;
+  align-items: center;
+  /* padding: 5px 5px; */
+  /* border-radius: 15px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px;
+  
+  /* background-color: black; */
+}
+ 
+/* Navigation Styling */
+nav {
+  display: flex;
+  /* background-color: #1e1e1e; */
+  padding: 4px;
+  border-radius: 4px 4px 0 0;
+}
+ 
+nav button {
+  background-color: transparent;
+  /* color: #a0a0a0; */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  position: relative;
+}
+ 
+nav button.active {
+  background-color: #2c2c2c;
+  color: #ffffff;
+  border-bottom: 2px solid #4a89dc;
+}
+ 
+nav button:hover {
+  color: #ffffff;
+  background-color: #2c2c2c;
+}
+ 
+nav button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 50%;
+  width: 1px;
+  background-color: #333333;
+  transform: translateY(-50%);
+}
+ 
+nav button:last-child::after {
+  display: none;
+}
+/* Blueprinting Sub-Tab Styles */
+nav .blueprinting-sub-tab {
+  padding: 8px 16px;
+  background-color: transparent;
+  color: #a0a0a0;
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+ 
+nav .blueprinting-sub-tab.active {
+  color: #ffffff;
+}
+ 
+nav .blueprinting-sub-tab:hover {
+  color: #ffffff;
+}
+ 
+/* Content Layout */
+.main-content {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
+ 
+/* Input Section */
+.input-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* gap: 15px; */
+}
+ 
+.input-section h3 {
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #333;
+}
+ 
+textarea {
+  width: 100%;
+  height: 200px;
+  padding: 12px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: none;
+}
+ 
+ 
+/*dynamic with textarea*/
+ 
+.main-content {
+  display: flex;
+  gap: 20px; /* Adds a gap between the input and output sections */
+  position: relative;
+}
+ 
+.input-section,
+.output-section {
+  flex: 1;
+  position: relative; /* Needed for positioning pseudo-elements */
+/* Minimum width of each section */
+}
+ 
+.input-section:after,
+.output-section:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px; /* Width of the resize area */
+  background: transparent; /* Transparent to show the original background */
+}
+ 
+.input-section:after {
+  right: -5px; /* Position the handle on the right edge */
+  cursor: ew-resize; /* Horizontal resize cursor */
+}
+ 
+.output-section:after {
+  left: -5px; /* Position the handle on the left edge */
+  cursor: ew-resize; /* Horizontal resize cursor */
+}
+ 
+ 
+ 
+ 
+/* for code synthesis*/
+.code-synthesis-container {
+  display: flex;
+  gap: 20px; /* Adds a gap between the folder structure and content sections */
+  position: relative;
+}
+ 
+.code-folder-structure-section,
+.code-content-section {
+  flex: 1;
+  position: relative;
+  min-width: 20%; /* Minimum width of each section */
+}
+ 
+textarea.SOLtree {
+  width: 100%;
+  height: 300px;
+  resize: none; /* Disable default resizing */
+  box-sizing: border-box; /* Include padding and border in width and height */
+}
+ 
+.code-folder-structure-section:after,
+.code-content-section:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px; /* Width of the resize area */
+  background: transparent; /* Transparent to show the original background */
+}
+ 
+.code-folder-structure-section:after {
+  right: -5px; /* Position the handle on the right edge */
+  cursor: ew-resize; /* Horizontal resize cursor */
+}
+ 
+.code-content-section:after {
+  left: -5px; /* Position the handle on the left edge */
+  cursor: ew-resize; /* Horizontal resize cursor */
+}
+ 
+ 
+ 
+ 
+ 
+.BRD {
+  width: 102%;
+  height: 376px;
+  padding: 12px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: none;
+  box-sizing: border-box;
+}
+.SOL {
+  height: 56vh;
+  width: 98%;
+ 
+}
+ 
+textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+ 
+/* Output Section */
+.output-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* gap: 15px; */
+}
+ 
+.output-section h3 {
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #333;
+}
+ 
+.task-and-tokens {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+ 
+.task-input {
+  flex-grow: 1; /* Allow task input to take up remaining space */
+  margin-right: 20px; /* Space between task input and token counts */
+}
+ 
+.task-input input {
+  width: 100%; /* Ensure the input field takes up all available space */
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+}
+ 
+.token-counts {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 14px;
+  color: #555;
+}
+ 
+.token-count-label {
+  font-weight: bold;
+  margin-right: 20px; /* Space between label and values */
+}
+ 
+.token-count-values {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align to the right */
+}
+ 
+.token-count-values div {
+  margin-bottom: 5px; /* Space between stacked values */
+}
+ 
+ 
+/* textarea[readonly] {
+  background-color: #f4f5f7;
+  border: 2px solid #d1d5db;
+  color: #333;
+} */
+ 
+/* Task Input */
+.task-input {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  height: 2px;
+  padding: 12px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: none;
+}
+ 
+.task-input label {
+  font-size: 14px;
+  color: #555;
+}
+ 
+.task-input input {
+  padding: 2px;
+  border: 2px solid #d1d5db;
+  border-radius: 5px;
+  width: inherit;
+  font-size: 14px;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+.task-input input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+ 
+/* Action Buttons */
+.action-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+ 
+.action-buttons button {
+  background-color: #fb4e0b; 
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.action-buttons button:disabled {
+  background-color: #ccc; /* Faded color */
+  color: #666; /* Faded text color */
+  cursor: not-allowed;
+}
+ 
+.action-buttons button:hover {
+  background-color: #218838; /* Change to green on hover */
+  transform: translateY(-2px);
+}
+ 
+.action-buttons button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.3);
+}
+ 
+/* Placeholder Content Styling */
+.tab-content p {
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+  margin-top: 20px;
+}
+ 
+/* Adjustments for Blueprinting Sub-Tabs */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+ 
+.input-section, .output-section {
+  width: 48%;
+}
+ 
+textarea {
+  width: 100%;
+  height: 65vh;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 14px;
+ 
+}
+ 
+.button-container {
+  margin: 20px;
+}
+ 
+ 
+.project-structure-container {
+  display: flex;
+  justify-content: space-between;
+  height: 6vh;
+}
+ 
+.description-section, .folder-structure-section, .file-content-section {
+  width: calc(33.33% - 14px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+ 
+.description-section h4, .folder-structure-section h4, .file-content-section h4 {
+  margin: 0;
+  padding: 10px;
+  background-color: #e0e0e0;
+  font-size: 16px;
+}
+ 
+.full-width-textarea, .folder-tree {
+  width: 98%;
+  flex-grow: 1;
+  overflow-y: auto;
+  border: none;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  background-color: white;
+  height: 65vh;
+  margin: 10px;
+}
+ 
+/* Project Structure Container */
+.project-structure-container {
+  display: flex;
+  justify-content: space-between;
+  height: 70vh;
+  /* gap: 20px; */
+  padding-top: 5px;
+  box-sizing: border-box; /* Include padding and border in width/height */
+}
+ 
+/* Description, Folder Structure, and File Content Sections */
+.description-section, .folder-structure-section, .file-content-section {
+  width: calc(100% - 14px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 8px; /* Apply consistent padding */
+  box-sizing: border-box; /* Include padding and border in width/height */
+}
+ 
+/* Section Headers */
+.description-section h4, .folder-structure-section h4, .file-content-section h4 {
+  margin: 0;
+  padding: 10px;
+  background-color: #e0e0e0;
+  font-size: 11px;
+}
+ 
+/* Full-Width Textarea and Folder Tree */
+.full-width-textarea, .folder-tree {
+  flex-grow: 1;
+  overflow-y: auto;
+  border: none;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* Include padding in the total width/height */
+}
+ 
+/* Folder Tree List */
+/* Folder Tree List */
+.folder-tree ul {
+  list-style-type: none;
+  padding-left: 20px;
+  margin: 0;
+}
+ 
+/* Folder Tree Items */
+.folder-tree li {
+  position: relative;
+  padding: 2px 0;
+}
+ 
+/* Folder and File Icons */
+.folder-icon,
+.file-icon {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+ 
+.folder-icon {
+  font-weight: bold;
+}
+ 
+.file-icon {
+  font-size: 0.8em;
+}
+ 
+/* Text Hover Effect */
+.tree-node span {
+  cursor: pointer;
+}
+ 
+.tree-node span:hover {
+  text-decoration: underline;
+}
+ 
+ 
+/* Blueprinting Sub-Tab Styles - Minimal and Small */
+/* Blueprinting Sub-Tab Styles - Chrome Tab-like */
+nav .blueprinting-sub-tab {
+  padding: 5px 15px; /* Padding similar to Chrome tabs */
+  margin-right: 5px;
+  background-color: #e0e0e0; /* Light gray for inactive tabs */
+  color: #444; /* Dark gray text */
+  border: none;
+  font-size: 14px; /* Font size similar to Chrome tabs */
+  font-weight: 500;
+  border-radius: 8px 8px 0 0; /* Rounded top corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+nav .blueprinting-sub-tab.active {
+  background-color: #ffffff; /* White for active tab */
+  color: #000; /* Dark text for active tab */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for active tab */
+}
+ 
+nav .blueprinting-sub-tab:hover {
+  background-color: #d1d5db; /* Slightly darker gray on hover */
+}
+ 
+/* nav .blueprinting-sub-tab:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.4);
+} */
+.subtab-content textarea {
+  height: 400px; /* Adjust this value as needed */
+  width: 100%;
+}
+ 
+ 
+.blueprinting-container {
+  height: calc(100vh - 200px); /* Adjust based on your layout */
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.code-synthesis-container {
+  display: flex;
+  justify-content: space-between;
+  height: 70vh;
+  gap: 20px;
+}
+ 
+.code-folder-structure-section,
+.code-content-section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+ 
+.code-folder-structure-section {
+  width: 33.33%;
+}
+ 
+.code-content-section {
+  width: 66.66%;
+}
+ 
+.code-folder-structure-section h4,
+.code-content-section h4 {
+  margin: 0;
+  padding: 15px;
+  background-color: #f5f5f5;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 2px;
+}
+ 
+.code-folder-tree,
+.code-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  border: none;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+ 
+.code-tree {
+  list-style-type: none; /* Remove default bullets/dashes */
+  padding-left: 0;
+  margin: 0;
+}
+ 
+.code-tree li {
+  position: relative;
+  padding-left: 20px;
+}
+ 
+.code-tree li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  background: #e0e0e0;
+}
+ 
+.code-tree li:last-child::before {
+  height: 15px;
+}
+ 
+.code-tree-node {
+  position: relative;
+  padding: 5px 0;
+}
+ 
+.code-tree-node::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: -20px;
+  width: 20px;
+  height: 1px;
+  background: #e0e0e0;
+}
+ 
+.code-folder-icon,
+.code-file-icon {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+  cursor: pointer;
+  color: #555555;
+}
+ 
+.code-folder-icon {
+  font-weight: bold;
+}
+ 
+.code-file-icon {
+  font-size: 0.8em;
+}
+ 
+.code-tree-node span {
+  cursor: pointer;
+  color: #333333;
+  transition: color 0.3s;
+}
+ 
+.code-tree-node span:hover {
+  color: #007bff;
+}
+ 
+ 
+ 
+.processing-container {
+  display: flex;
+  align-items: center;
+  /* margin-top: 10px; */
+}
+ 
+.processing-text {
+  font-size: 12px; /* Larger font size */
+  color: #333; /* Darker text color for better visibility */
+  margin-right: 20px; /* Space between text and loading boxes */
+  font-weight: bold; /* Make the text bold */
+  letter-spacing: 1px; /* Add spacing between letters for better readability */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
+  /* animation: text-blink 1.2s infinite; /* Blinking animation */
+}
+ 
+.response {
+  font-size: 12px; /* Larger font size */
+  color: black; /* Darker text color for better visibility */
+  margin-right: 20px; /* Space between text and loading boxes */
+  font-weight: bold; /* Make the text bold */
+  letter-spacing: 1px; /* Add spacing between letters for better readability */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a 3D effect */
+  /* animation: text-blink 1.2s infinite; /* Blinking animation */
+}
+ 
+@keyframes text-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+ 
+.loading-box-container {
+  display: flex;
+  align-items: center;
+  /* padding: 10px; */
+  border: 2px solid #00c853; /* Green border */
+  border-radius: 8px;
+  background-color: #ffffff; /* White background for the box */
+  overflow: hidden; /* Hide overflowing content */
+  width: 100px; /* Adjust width to accommodate larger boxes */
+}
+ 
+.loading-box {
+  width: 20px;
+  height: 20px;
+  background-color: #00c853; /* Green color */
+  margin-right: 10px; /* Space between boxes */
+  border-radius: 5px; /* Rounded corners for a modern look */
+  animation: box-loading-animation 1.2s infinite;
+}
+ 
+.loading-box:last-child {
+  margin-right: 0; /* Remove margin after the last box */
+}
+ 
+.loading-box:nth-child(1) {
+  animation-delay: 0s;
+}
+ 
+.loading-box:nth-child(2) {
+  animation-delay: 0.2s;
+}
+ 
+.loading-box:nth-child(3) {
+  animation-delay: 0.4s;
+}
+ 
+.loading-box:nth-child(4) {
+  animation-delay: 0.6s;
+}
+ 
+@keyframes box-loading-animation {
+  0% {
+    transform: translateX(-60px); /* Start position off-screen */
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(20px); /* Move into view */
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100px); /* Move out of view */
+    opacity: 0;
+  }
+}
+ 
+.checkbox-container {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+ 
+.checkbox-container label {
+  font-size: 14px; /* Smaller font size */
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Less gap between checkbox and label */
+  font-style: italic; /* Italicize the label text */
+}
+ 
+.checkbox-container input[type="checkbox"] {
+  width: 16px; /* Smaller checkbox */
+  height: 16px;
+  cursor: pointer;
+  accent-color: #4caf50; /* Custom checkbox color */
+  border-radius: 3px; /* Slightly rounded corners */
+}
+ 
+.checkbox-container input[type="checkbox"]:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2); /* Subtle hover effect */
+}
+ 
+.checkbox-container input[type="checkbox"]:checked {
+  background-color: #4caf50; /* Custom color when checked */
+  border-color: #4caf50;
+}
