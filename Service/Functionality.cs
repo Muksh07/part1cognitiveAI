@@ -32,8 +32,8 @@ namespace backend.Service
 
 
         private const string llmmodel = "gpt-4o";
-        private const string ApiKey = "d6d103abbe7c4709a24fd28c8b77e02f";
-        private const string ApiEndpoint = "https://digitalum-aoai-1.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview";
+        private const string ApiKey = "";
+        private const string ApiEndpoint = "";
 
         GPTService.Core.GPTService gPTService = new GPTService.Core.GPTService { };
 
